@@ -1,0 +1,373 @@
+// Fuentes
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap');
+
+@font-face {
+    font-family: 'Value';
+    src: url('../fonts/value/Value.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Value';
+    src: url('../fonts/value/Value-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+// Variables
+
+$dark: #333333;
+$dark2: #091D40;
+$value: 'Value', sans-serif;
+$poppins: 'Poppins', sans-serif;
+$xl-break: 1200px;
+$lg-break: 992px;
+$md-break: 768px;
+$sm-break: 576px;
+
+// Placeholders
+
+%flex {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+%shadow {
+    -webkit-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.16);
+    -moz-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.16);
+    box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.16);
+}
+
+// Mixins
+
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin scale($scale) {
+    -moz-transform: scale($scale);
+    -webkit-transform: scale($scale);
+    -o-transform: scale($scale);
+    -ms-transform: scale($scale);
+    transform: scale($scale);
+}
+
+@mixin transition-duration($duration) {
+    -webkit-transition-duration: $duration;
+    -moz-transition-duration: $duration;
+    -o-transition-duration: $duration;
+    transition-duration: $duration;
+}
+
+// Globales
+
+html, body, p, section, h1, h2, h3, h4, h5, h6, ul {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    font-family: $value;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $poppins;
+    font-weight: bold;
+}
+
+nav, footer {
+    background-color: black;
+    color: white;
+}
+
+ul {
+    list-style: none;
+    list-style-position: outside;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    @include transition-duration(150ms);
+    font-weight: 700;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.container {
+    margin: auto;
+    
+    @media screen and (min-width: $xl-break){
+        width: 1140px;
+    }
+    @media screen and (min-width: $lg-break) and (max-width: $xl-break - 1px){
+        width: 960px;
+    }
+    @media screen and (min-width: $md-break) and (max-width: $lg-break - 1px) {
+        width: 720px;
+    }
+    @media screen and (max-width: $sm-break) {
+        width: 80%;
+        padding: 0 10%;
+    }
+    
+}
+
+.logo {
+    img {
+        height: 42px;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        cursor: pointer;
+    }
+}
+
+img {
+    max-width: 100%;
+}
+
+.social {
+    a {
+        &:hover {
+            @include scale(1.1);
+        }
+    }
+}
+
+// Scoped
+
+nav {
+    padding: 0.5rem 2rem;
+    @extend %flex;
+    align-items: center;
+    .menu img {
+        cursor: pointer;
+        padding-right: 2rem;
+    }
+    .search {
+        margin-left: auto;
+        input {
+            border: solid white 1px;
+            padding: 0.75rem 0.75rem;
+            background-color: black;
+            color: rgba(white, .5);
+            font-family: $poppins;
+            background: url('../img/search.svg') no-repeat right 1rem center;
+        }
+    }
+}
+
+#player {
+    background-color: $dark;
+    color: white;
+    padding-bottom: 3rem;
+    .video {
+        position: relative;
+        cursor: pointer;
+        &::before {
+            content: "";
+            background: url('../img/play-video.svg') no-repeat;
+            background-size: contain;
+            width: 100px;
+            height: 100px;
+            z-index: 2;
+            position: absolute;
+            top: 40%;
+            left: 45%;
+            @include transition-duration(150ms);
+        }
+        &:hover {
+            &::before {
+                @include scale(1.2);
+            }
+        }
+    }
+    .info {
+        .meta {
+            @extend %flex;
+            align-items: center;
+            margin-top: 2rem;
+            .author {
+                a:hover {
+                    opacity: .5;
+                }
+            }
+            .social {
+                margin-left: auto;
+                span {
+                    vertical-align: middle;
+                }
+                img {
+                    vertical-align: middle;
+                }
+                a {
+                    display: inline-block;
+                    &:first-of-type {
+                        margin: 0 1rem;
+                    }
+                    &:hover {
+                        @include scale(1.2);
+                    }
+                }
+            }
+        }
+        .title {
+            font-size: 2.5rem;
+        }
+        .desc {
+            line-height: 161.8%;
+            font-size: 1.125rem;
+        }
+    }
+}
+
+#related {
+    padding: 3rem 0;
+    .container {
+        @media screen and (min-width: $xl-break){
+            width: 90%;
+            margin: 0 5%;
+        }
+        .title {
+            font-size: 2.75rem;
+            margin-bottom: 1.25rem;
+        }
+        .related {
+            @extend %flex;
+            justify-content: flex-start;
+            position: relative;
+            .left-arrow, .right-arrow {
+                background-color: white;
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                @include border-radius(50%);
+                z-index: 2;
+                top: 40%;
+                cursor: pointer;
+                @extend %shadow;
+                @include transition-duration(200ms);
+                &:hover {
+                    @include scale(1.2);
+                }
+            }
+            .left-arrow {
+                left: -25px;
+                background: url('../img/round-arrow_back_ios-24px.svg') white no-repeat center;
+            }
+            .right-arrow {
+                right: -25px;
+                background: url('../img/round-arrow_forward_ios-24px.svg') white no-repeat center;
+            }
+            .box {
+                @extend %shadow;
+                background: white;
+                margin-right: 1.5rem;
+                .box-img {
+                    position: relative;
+                    img {
+                        width: 100%;
+                    }
+                    &:before {
+                        content: "";
+                        background-color: white;
+                        position: absolute;
+                        width: 50px;
+                        height: 50px;
+                        @include border-radius(50%);
+                        z-index: 2;
+                        @extend %shadow;
+                        left: 10px;
+                        bottom: 15px;
+                        opacity: 0;
+                        background: url('../img/play-solid.svg') white no-repeat center left 18px;
+                        @include transition-duration(200ms);
+                    }
+                }
+                .box-content {
+                    padding: 1rem;
+                    h3 {
+                        font-size: 1.25rem;
+                        line-height: 125%;
+                        margin-bottom: .5rem;
+                        font-family: $value;
+                    }
+                    .date {
+                        font-size: 0.75rem;
+                        color: $dark2;
+                    }
+                }
+                @include transition-duration(200ms);
+                &:hover {
+                    @include scale(1.12);
+                    background: black;
+                    cursor: pointer;
+                    h3 {
+                        color: white;
+                    }
+                    .date {
+                        color: rgba(white, .5);
+                    }
+                    .box-img:before {
+                        opacity: 1;
+                    }
+                }
+            }
+            .last {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+footer {
+    padding: 2rem;
+    @extend %flex;
+    align-items: center;
+    .logo {
+        margin-right: 2rem;
+    }
+    .navigation {
+        ul {
+            margin-bottom: .5rem;
+            li {
+                display: inline;
+                font-family: $poppins;
+                margin-right: 1rem;
+                vertical-align: middle;
+                a:hover {
+                    opacity: .5;
+                }
+            }
+            img {
+                width: 22px;
+                vertical-align: sub;
+            }
+        }
+    }
+    .social {
+        margin-left: auto;
+        a {
+            vertical-align: middle;
+            display: inline-block;
+            margin: .75rem;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+    
+}
+

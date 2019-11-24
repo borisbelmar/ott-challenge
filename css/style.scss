@@ -300,6 +300,7 @@ nav {
             @extend %flex;
             justify-content: flex-start;
             position: relative;
+            flex-wrap: 1;
             .left-arrow, .right-arrow {
                 background-color: white;
                 position: absolute;
@@ -327,6 +328,7 @@ nav {
                 @extend %shadow;
                 background: white;
                 margin-right: 1.5rem;
+                flex-basis: 590px;
                 .box-img {
                     position: relative;
                     img {

@@ -163,6 +163,10 @@ nav {
     .menu img {
         cursor: pointer;
         padding-right: 2rem;
+        @include transition-duration(150ms);
+        &:hover {
+            opacity: .75;
+        }
     }
     .search {
         margin-left: auto;
@@ -170,9 +174,12 @@ nav {
             border: solid white 1px;
             padding: 0.75rem 0.75rem;
             background-color: black;
-            color: rgba(white, .5);
+            color: white;
             font-family: $poppins;
             background: url('../img/search.svg') no-repeat right 1rem center;
+            &::placeholder {
+                color: rgba(white, .5);
+            }
         }
     }
     @media screen and (max-width: $md-break - 1px) {
